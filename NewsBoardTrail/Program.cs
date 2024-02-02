@@ -25,6 +25,10 @@ namespace NewsBoardBE
 
             builder.Services.AddScoped<INewsBoardServices<User>, NewsBoardService>();
             builder.Services.AddScoped<INewsBoardServices<Content>, ContentService>();
+            builder.Services.AddScoped<INewsBoardServices<ContentShare>, ContentShareService>();
+            builder.Services.AddScoped<INewsBoardServices<ContentTag>, ContentTagService>();
+            builder.Services.AddScoped<INewsBoardServices<Follow>, FollowService>();
+           // builder.Services.AddScoped<INewsBoardServices<Notification>, NotificationService>();
 
             //............................
             //add mongIdentityConfiguration...

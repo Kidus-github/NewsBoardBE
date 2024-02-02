@@ -31,11 +31,11 @@ namespace NewsBoardBE.Services
             return _like.Find(like => true).ToList();
         }
 
-        [Obsolete]
-        public long GetCount()
+       /* public long GetCount()
         {
             return _like.Find(like => true).Count();
         }
+       */
         public likes GetById(string id)
         {
             return _like.Find(like => like.LikeId == id).FirstOrDefault();

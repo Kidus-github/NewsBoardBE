@@ -10,5 +10,8 @@
         string LikeCollectionName { get; set; }
         string BookmarkCollectionName { get; set; }
         string ContentShareCollectionName { get; set; }
+        string ContentTagCollectionName { get; set; }
+        string FollowCollectionName { get; set; }
+        string NotificationCollectionName { get; set; }
     }
 }

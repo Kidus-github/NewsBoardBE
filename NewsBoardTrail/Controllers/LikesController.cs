@@ -41,9 +41,11 @@ namespace NewsBoardBE.Controllers
             return Ok($"Content with Id = {id} deleted");
         }
 
-        [Obsolete]
+        /*
+        [HttpGet]
         public ActionResult<long> GetCount() {
             return _likeService.GetCount();
         }
+        */
     }
 }
