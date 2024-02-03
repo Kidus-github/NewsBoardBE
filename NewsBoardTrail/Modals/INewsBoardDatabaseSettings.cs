@@ -13,5 +13,13 @@
         string ContentTagCollectionName { get; set; }
         string FollowCollectionName { get; set; }
         string NotificationCollectionName { get; set; }
+
+        string PaymentTransactionCollectionName { get; set; }
+        string ReportCollectionName { get; set; }
+        string SearchHistoryCollectionName { get; set; }
+        string SourceCollectionName { get; set; }
+        string SubscripitonCollectionName { get; set; }
+        string TagCollectionName { get; set; }
+        string TrendingCollectionName { get; set; }
     }
 }

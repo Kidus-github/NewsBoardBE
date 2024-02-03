@@ -46,7 +46,7 @@ namespace NewsBoardBE.Controllers
 
         // PUT api/<FollowController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Follow value)
+        public ActionResult Put(string id, [FromBody] Follow value)
         {
             var existingUser = _follow.GetById(id);
             if (existingUser == null) { return NotFound($"Follow with Id = {id} not found"); }

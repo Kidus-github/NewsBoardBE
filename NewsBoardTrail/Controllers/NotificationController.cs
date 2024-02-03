@@ -47,7 +47,7 @@ namespace NewsBoardBE.Controllers
 
         // PUT api/<NotificationController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] string value)
+        public ActionResult Put(string id, [FromBody] Notification value)
         {
             var existingUser = _notification.GetById(id);
             if (existingUser == null) { return NotFound($"User with Id = {id} not found"); }
@@ -57,7 +57,7 @@ namespace NewsBoardBE.Controllers
 
         // DELETE api/<NotificationController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
 
             var existingUser = _notification.GetById(id);

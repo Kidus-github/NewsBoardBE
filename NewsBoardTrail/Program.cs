@@ -28,7 +28,14 @@ namespace NewsBoardBE
             builder.Services.AddScoped<INewsBoardServices<ContentShare>, ContentShareService>();
             builder.Services.AddScoped<INewsBoardServices<ContentTag>, ContentTagService>();
             builder.Services.AddScoped<INewsBoardServices<Follow>, FollowService>();
-           // builder.Services.AddScoped<INewsBoardServices<Notification>, NotificationService>();
+            builder.Services.AddScoped<INewsBoardServices<Notification>, NotificationService>();
+            builder.Services.AddScoped<INewsBoardServices<PaymentTransaction>, PaymentTransactionService>();
+           // builder.Services.AddScoped<INewsBoardServices<Report>, ReportService>();
+           // builder.Services.AddScoped<INewsBoardServices<SearchHistory>, SearchHistoryService>();
+             //builder.Services.AddScoped<INewsBoardServices<Source>, SourceService>();
+             //builder.Services.AddScoped<INewsBoardServices<Subscription>, SubscriptionService>();
+            //builder.Services.AddScoped<INewsBoardServices<Tag>, TagService>();
+           //builder.Services.AddScoped<INewsBoardServices<Trending>, TrendingService>();
 
             //............................
             //add mongIdentityConfiguration...
