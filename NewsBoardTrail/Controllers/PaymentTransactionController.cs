@@ -48,8 +48,8 @@ namespace NewsBoardBE.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(string id, [FromBody] PaymentTransaction value)
         {
-            var existingUser = _paymentTransaction.GetById(id);
-            if (existingUser == null) { return NotFound($"Payment Transaction with Id = {id} not found"); }
+            var existing = _paymentTransaction.GetById(id);
+            if (existing == null) { return NotFound($"Payment Transaction with Id = {id} not found"); }
             _paymentTransaction.Update(id, value);
             return Ok($"Payment Transaction with id = {id} Updated");
         }
@@ -59,8 +59,8 @@ namespace NewsBoardBE.Controllers
         public ActionResult Delete(string id)
         {
 
-            var existingUser = _paymentTransaction.GetById(id);
-            if (existingUser == null) { return NotFound($"Payment Transaction with Id = {id} not found"); }
+            var existingr = _paymentTransaction.GetById(id);
+            if (existing == null) { return NotFound($"Payment Transaction with Id = {id} not found"); }
             _paymentTransaction.Delete(id);
             return Ok($"Payment Transaction with Id = {id} deleted");
         }
