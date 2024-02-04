@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace NewsBoardBE.Modals
 {
-    public class Trending
+    public class Trendings
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

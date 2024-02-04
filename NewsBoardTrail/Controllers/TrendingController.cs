@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NewsBoardBE.Modals;
 using NewsBoardBE.Services;
 
 namespace NewsBoardBE.Controllers
@@ -8,23 +9,23 @@ namespace NewsBoardBE.Controllers
     [ApiController]
     public class TrendingController : ControllerBase
     {
-        private INewsBoardServices<Trending> _trendingCollection;
+        private INewsBoardServices<Trendings> _trendingCollection;
 
-        public TrendingController(INewsBoardServices<Trending> trending)
+        public TrendingController(INewsBoardServices<Trendings> trending)
         {
             _trendingCollection = trending;
 
         }
         // GET: api/<TrendingController>
         [HttpGet]
-        public List<Trending> Get()
+        public List<Trendings> Get()
         {
             return _trendingCollection.Get();
         }
 
         // GET api/<TrendingController>/5
         [HttpGet("{id}")]
-        public ActionResult<Trending> Get(string id)
+        public ActionResult<Trendings> Get(string id)
         {
             var trending = _trendingCollection.GetById(id);
             if (trending == null)
@@ -36,15 +37,15 @@ namespace NewsBoardBE.Controllers
 
         // POST api/<TrendingController>
         [HttpPost]
-        public ActionResult<Trending> Post([FromBody] Trending value)
+        public ActionResult<Trendings> Post([FromBody] Trendings value)
         {
             _trendingCollection.Create(value);
-            return CreatedAtAction(nameof(Get), new { id = value.TrendingId }, value);
+            return CreatedAtAction(nameof(Get), new { id = value.TrendingID }, value);
         }
 
         // PUT api/<TrendingController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(string id, [FromBody] Trending value)
+        public ActionResult Put(string id, [FromBody] Trendings value)
         {
             var existing = _trendingCollection.GetById(id);
             if (existing == null) { return NotFound($"Trending with Id = {id} not found"); }
@@ -62,5 +63,4 @@ namespace NewsBoardBE.Controllers
             return Ok($"Trending with Id = {id} deleted");
         }
     }
-}
 }

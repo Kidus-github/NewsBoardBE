@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace NewsBoardBE.Modals
 {
-    public class Tag
+    public class Tags
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

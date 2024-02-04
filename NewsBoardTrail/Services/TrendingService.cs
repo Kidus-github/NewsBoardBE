@@ -3,18 +3,18 @@ using NewsBoardBE.Modals;
 
 namespace NewsBoardBE.Services
 {
-    public class TrendingService : INewsBoardServices<Trending>
+    public class TrendingService : INewsBoardServices<Trendings>
     {
-        private readonly IMongoCollection<Trending> _trendingCollection;
+        private readonly IMongoCollection<Trendings> _trendingCollection;
 
         public TrendingService(INewsBoardDatabaseSettings settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
 
-            _trendingCollection = database.GetCollection<Trending>(settings.TrendingCollectionName);
+            _trendingCollection = database.GetCollection<Trendings>(settings.TrendingCollectionName);
         }
 
-        public Trending Create(Trending entity)
+        public Trendings Create(Trendings entity)
         {
             _trendingCollection.InsertOne(entity);
             return entity;
@@ -25,17 +25,17 @@ namespace NewsBoardBE.Services
             _trendingCollection.DeleteOne(trending => trending.TrendingID == id);
         }
 
-        public List<Trending> Get()
+        public List<Trendings> Get()
         {
             return _trendingCollection.Find(trending => true).ToList();
         }
 
-        public Trending GetById(string id)
+        public Trendings GetById(string id)
         {
             return _trendingCollection.Find(trending => trending.TrendingID == id).FirstOrDefault();
         }
 
-        public void Update(string id, Trending entity)
+        public void Update(string id, Trendings entity)
         {
             _trendingCollection.ReplaceOne(trending => trending.TrendingID == id, entity);
         }

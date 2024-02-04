@@ -9,23 +9,23 @@ namespace NewsBoardBE.Controllers
     [ApiController]
     public class TagController : ControllerBase
     {
-        private INewsBoardServices<Tag> _tagCollection;
+        private INewsBoardServices<Tags> _tagCollection;
 
-        public TagController(INewsBoardServices<Tag> tag)
+        public TagController(INewsBoardServices<Tags> tag)
         {
             _tagCollection = tag;
 
         }
         // GET: api/<TagController>
         [HttpGet]
-        public List<Tag> Get()
+        public List<Tags> Get()
         {
             return _tagCollection.Get();
         }
 
         // GET api/<TagController>/5
         [HttpGet("{id}")]
-        public ActionResult<Tag> Get(string id)
+        public ActionResult<Tags> Get(string id)
         {
             var tag = _tagCollection.GetById(id);
             if (tag == null)
@@ -37,7 +37,7 @@ namespace NewsBoardBE.Controllers
 
         // POST api/<TagController>
         [HttpPost]
-        public ActionResult<Tag> Post([FromBody] Tag value)
+        public ActionResult<Tags> Post([FromBody] Tags value)
         {
             _tagCollection.Create(value);
             return CreatedAtAction(nameof(Get), new { id = value.TagId }, value);
@@ -45,7 +45,7 @@ namespace NewsBoardBE.Controllers
 
         // PUT api/<TagController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(string id, [FromBody] Tag value)
+        public ActionResult Put(string id, [FromBody] Tags value)
         {
             var existing = _tagCollection.GetById(id);
             if (existing == null) { return NotFound($"Tag with Id = {id} not found"); }

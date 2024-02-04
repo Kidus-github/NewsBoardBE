@@ -3,18 +3,18 @@ using NewsBoardBE.Modals;
 
 namespace NewsBoardBE.Services
 {
-    public class TagService : INewsBoardServices<Tag>
+    public class TagService : INewsBoardServices<Tags>
     {
-        private readonly IMongoCollection<Tag> _tagCollection;
+        private readonly IMongoCollection<Tags> _tagCollection;
 
         public TagService(INewsBoardDatabaseSettings settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
 
-            _tagCollection = database.GetCollection<Tag>(settings.TagCollectionName);
+            _tagCollection = database.GetCollection<Tags>(settings.TagCollectionName);
         }
 
-        public Tag Create(Tag entity)
+        public Tags Create(Tags entity)
         {
             _tagCollection.InsertOne(entity);
             return entity;
@@ -25,17 +25,17 @@ namespace NewsBoardBE.Services
             _tagCollection.DeleteOne(tag => tag.TagId == id);
         }
 
-        public List<Tag> Get()
+        public List<Tags> Get()
         {
             return _tagCollection.Find(tag => true).ToList();
         }
 
-        public Tag GetById(string id)
+        public Tags GetById(string id)
         {
             return _tagCollection.Find(tag => tag.TagId == id).FirstOrDefault();
         }
 
-        public void Update(string id, Tag entity)
+        public void Update(string id, Tags entity)
         {
             _tagCollection.ReplaceOne(tag => tag.TagId == id, entity);
         }
