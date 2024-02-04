@@ -59,7 +59,7 @@ namespace NewsBoardBE.Controllers
         public ActionResult Delete(string id)
         {
 
-            var existingr = _paymentTransaction.GetById(id);
+            var existing = _paymentTransaction.GetById(id);
             if (existing == null) { return NotFound($"Payment Transaction with Id = {id} not found"); }
             _paymentTransaction.Delete(id);
             return Ok($"Payment Transaction with Id = {id} deleted");
