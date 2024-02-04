@@ -6,6 +6,8 @@ using NewsBoardBE.Services;
 
 namespace NewsBoardBE.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class SourceController : ControllerBase {
 
         private INewsBoardServices<Source> _source;
@@ -29,7 +31,7 @@ namespace NewsBoardBE.Controllers
             var source = _source.GetById(id);
             if (source == null)
             {
-                return NotFound($"Search History with Id = {id} not found");
+                return NotFound($"Source with Id = {id} not found");
             }
             return source;
         }
@@ -47,9 +49,9 @@ namespace NewsBoardBE.Controllers
         public ActionResult Put(string id, [FromBody] Source value)
         {
             var existingUser = _source.GetById(id);
-            if (existingUser == null) { return NotFound($"Search History with Id = {id} not found"); }
+            if (existingUser == null) { return NotFound($"Source with Id = {id} not found"); }
             _source.Update(id, value);
-            return Ok($"Search History with id = {id} Updated");
+            return Ok($"Source with id = {id} Updated");
         }
 
         // DELETE api/<SourceController>/5
@@ -57,9 +59,9 @@ namespace NewsBoardBE.Controllers
         public ActionResult Delete(string id)
         {
             var existing = _source.GetById(id);
-            if (existing == null) { return NotFound($"Search History with Id = {id} not found"); }
+            if (existing == null) { return NotFound($"Source with Id = {id} not found"); }
             _source.Delete(id);
-            return Ok($"Search History with Id = {id} deleted");
+            return Ok($"Source with Id = {id} deleted");
         }
 
     }
