@@ -10,8 +10,8 @@ namespace NewsBoardBE.Controllers
     [ApiController]
     public class LikesController : ControllerBase
     {
-        private readonly LikeService _likeService;
-        public LikesController(LikeService like)
+        private readonly ILikeService _likeService;
+        public LikesController(ILikeService like)
         {
             _likeService = like;
         }
@@ -36,16 +36,19 @@ namespace NewsBoardBE.Controllers
         public ActionResult Delete(string id)
         {
             var existingUser = _likeService.GetById(id);
-            if (existingUser == null) { return NotFound($"User with Id = {id} not found"); }
+            if (existingUser == 0) { return NotFound($"User with Id = {id} not found"); }
             _likeService.Delete(id);
             return Ok($"Content with Id = {id} deleted");
         }
-
-        /*
-        [HttpGet]
-        public ActionResult<long> GetCount() {
-            return _likeService.GetCount();
+        [HttpGet("{id}")]
+        public ActionResult<long> GetById(string id)
+        {
+            var like = _likeService.GetById(id);
+            if (like == 0)
+            {
+                return NotFound($"likes with ContentId = {id} not found");
+            }
+            return like;
         }
-        */
-    }
+        }
 }

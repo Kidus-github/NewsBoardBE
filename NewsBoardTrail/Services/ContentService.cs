@@ -28,7 +28,7 @@ namespace NewsBoardBE.Services
 
         public List<Content> Get()
         {
-           return _content.Find(content => true).ToList();
+           return _content.Find(content => (content.PublicationStatus == "published") ).ToList();
         }
 
         public Content GetById(string id)

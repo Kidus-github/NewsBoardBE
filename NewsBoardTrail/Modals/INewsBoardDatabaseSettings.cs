@@ -7,6 +7,7 @@
         string DatabaseName { get; set; }
         string ContentCollectionName { get; set; }
         string CategoryCollectionName { get; set; }
+        string CommentCollectionName { get; set; }
         string LikeCollectionName { get; set; }
         string BookmarkCollectionName { get; set; }
         string ContentShareCollectionName { get; set; }

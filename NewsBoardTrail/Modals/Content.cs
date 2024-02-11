@@ -17,6 +17,10 @@ namespace NewsBoardBE.Modals
         public string URL { get; set; }
         [BsonElement("author")]
         public string Author { get; set; }
+
+        [BsonElement("publication_status")]
+        public string PublicationStatus { get; set; }
+
         [BsonElement("publication_date")]
         public DateTime PublicationDate { get; set; }
         [BsonElement("category_id")]

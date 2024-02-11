@@ -3,7 +3,7 @@ using NewsBoardBE.Modals;
 
 namespace NewsBoardBE.Services
 {
-    public class LikeService
+    public class LikeService : ILikeService
     {
         private readonly IMongoCollection<likes> _like;
 
@@ -31,14 +31,10 @@ namespace NewsBoardBE.Services
             return _like.Find(like => true).ToList();
         }
 
-       /* public long GetCount()
+
+        public long GetById(string id)
         {
-            return _like.Find(like => true).Count();
-        }
-       */
-        public likes GetById(string id)
-        {
-            return _like.Find(like => like.LikeId == id).FirstOrDefault();
+            return _like.CountDocuments(like => like.ContentId == id);
         }
 
 

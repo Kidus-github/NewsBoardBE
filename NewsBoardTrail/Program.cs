@@ -35,7 +35,9 @@ namespace NewsBoardBE
             builder.Services.AddScoped<INewsBoardServices<Source>, SourceServices>();
             builder.Services.AddScoped<INewsBoardServices<Subscription>, SubscriptionService>();
             builder.Services.AddScoped<INewsBoardServices<Tags>, TagService>();
-           builder.Services.AddScoped<INewsBoardServices<Trendings>, TrendingService>();
+            builder.Services.AddScoped<INewsBoardServices<Trendings>, TrendingService>();
+            builder.Services.AddScoped<ILikeService, LikeService>();
+            builder.Services.AddScoped<ICommentService, CommentService>();
 
             //............................
             //add mongIdentityConfiguration...

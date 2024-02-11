@@ -3,14 +3,15 @@ using NewsBoardBE.Modals;
 
 namespace NewsBoardBE.Services
 {
-    public class CommentService: INewsBoardServices<Comment>
+    public class CommentService: ICommentService
     {
         private readonly IMongoCollection<Comment> _Comment;
+
         public CommentService(INewsBoardDatabaseSettings settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
 
-            _Comment = database.GetCollection<Comment>(settings.ContentCollectionName);
+            _Comment = database.GetCollection<Comment>(settings.CommentCollectionName);
         }
 
         public Comment Create(Comment entity)
@@ -29,14 +30,19 @@ namespace NewsBoardBE.Services
             return _Comment.Find(comment => true).ToList();
         }
 
-        public Comment GetById(string id)
+        public long GetCount(string id)
         {
-            return _Comment.Find(comment => comment.CommentId == id).FirstOrDefault();
+            return _Comment.CountDocuments(comment => comment.ContentId == id);
         }
 
         public void Update(string id, Comment entity)
         {
             _Comment.ReplaceOne(comment => comment.CommentId == id, entity);
+        }
+
+        public Comment GetById(string id)
+        {
+            return _Comment.Find(comment => comment.CommentId == id).FirstOrDefault();
         }
     }
 }

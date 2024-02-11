@@ -10,8 +10,8 @@ namespace NewsBoardBE.Controllers
     [ApiController]
     public class CommentController : ControllerBase
     {
-        private readonly INewsBoardServices<Comment> _commentServices;
-        public CommentController(INewsBoardServices<Comment> ContentService)
+        private readonly ICommentService _commentServices;
+        public CommentController(ICommentService ContentService)
         {
             _commentServices = ContentService;
         }
@@ -22,19 +22,28 @@ namespace NewsBoardBE.Controllers
             return _commentServices.Get();
         }
 
+        [HttpGet("CountByid")]
+        public ActionResult<long> GetCount(string id)
+        {
+            var comment = _commentServices.GetCount(id);
+            
+            return comment;
+
+        }
         [HttpGet("{id}")]
-        public ActionResult<Comment> Get(string id)
+        public ActionResult<Comment> GetById(string id)
         {
             var comment = _commentServices.GetById(id);
             if (comment == null)
             {
-                return NotFound($"User with Id = {id} not found");
+                return NotFound($"Comment with Id = {id} not found");
             }
             return comment;
 
         }
 
-       
+
+
         [HttpPost]
         public ActionResult<Comment> Post([FromBody] Comment comment)
         {
