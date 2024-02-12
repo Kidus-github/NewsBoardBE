@@ -48,7 +48,7 @@ namespace NewsBoardBE.Controllers
         public ActionResult<Content> Put(string id, [FromBody] Content content)
         {
             var existingUser = contentServices.GetById(id);
-            if (existingUser == null) { return NotFound($"User with Id = {id} not found"); }
+            if (existingUser == null) { return NotFound($"content with Id = {id} not found"); }
             contentServices.Update(id, content);
             return Ok($"Content with id = {id} Updated");
         }

@@ -41,7 +41,17 @@ namespace NewsBoardBE.Controllers
             return comment;
 
         }
+        [HttpGet("GetListBYid")]
+        public ActionResult<List<Comment>> GetListById(string id)
+        {
+            var comment = _commentServices.GetListById(id);
+            if (comment == null)
+            {
+                return NotFound($"Comment with Id = {id} not found");
+            }
+            return comment;
 
+        }
 
 
         [HttpPost]
@@ -70,5 +80,7 @@ namespace NewsBoardBE.Controllers
             _commentServices.Delete(id);
             return Ok($"Content with Id = {id} deleted");
         }
+
+        
     }
 }

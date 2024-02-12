@@ -22,7 +22,7 @@ namespace NewsBoardBE.Services
 
         public void Delete(string id)
         {
-            _like.DeleteOne(likes => likes.LikeId == id);
+            _like.DeleteOne(likes => likes.ContentId == id);
 
         }
 

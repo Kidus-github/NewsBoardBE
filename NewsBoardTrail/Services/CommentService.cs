@@ -44,5 +44,9 @@ namespace NewsBoardBE.Services
         {
             return _Comment.Find(comment => comment.CommentId == id).FirstOrDefault();
         }
+        public List<Comment> GetListById(string id)
+        {
+            return _Comment.Find(comment => comment.ContentId == id).ToList();
+        }
     }
 }

@@ -36,9 +36,9 @@ namespace NewsBoardBE.Controllers
         public ActionResult Delete(string id)
         {
             var existingUser = _likeService.GetById(id);
-            if (existingUser == 0) { return NotFound($"User with Id = {id} not found"); }
+            if (existingUser == 0) { return NotFound($"Like with Id = {id} not found"); }
             _likeService.Delete(id);
-            return Ok($"Content with Id = {id} deleted");
+            return Ok($"Like with Id = {id} deleted");
         }
         [HttpGet("{id}")]
         public ActionResult<long> GetById(string id)
