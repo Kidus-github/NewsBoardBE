@@ -4,5 +4,6 @@
     {
         string GenerateToken(string userId);
         string GetUserIdFromRefreshToken (string refreshToken);
+        
     }
 }

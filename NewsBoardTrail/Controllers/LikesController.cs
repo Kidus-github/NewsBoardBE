@@ -44,10 +44,7 @@ namespace NewsBoardBE.Controllers
         public ActionResult<long> GetById(string id)
         {
             var like = _likeService.GetById(id);
-            if (like == 0)
-            {
-                return NotFound($"likes with ContentId = {id} not found");
-            }
+
             return like;
         }
         }

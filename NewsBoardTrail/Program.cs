@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
@@ -22,6 +23,8 @@ namespace NewsBoardBE
 
             builder.Services.AddSingleton<IMongoClient>(s =>
             new MongoClient(builder.Configuration.GetValue<string>("NewsBoardDatabaseSettings:ConnectionString")));
+
+
 
             builder.Services.AddScoped<INewsBoardServices<User>, NewsBoardService>();
             builder.Services.AddScoped<INewsBoardServices<Content>, ContentService>();

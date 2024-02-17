@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using NewsBoardBE.Modals;
 using NewsBoardBE.Services;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace NewsBoardBE.Controllers
 {
@@ -11,8 +15,9 @@ namespace NewsBoardBE.Controllers
     {
         private readonly IUserService _userService;
         private readonly ITokenService _tokenService;
+        
 
-        public AuthController(IUserService userService, ITokenService tokenService)
+        public AuthController(IUserService userService, ITokenService tokenService, IOptions<ITokenService> jwtSettings)
         {
             _userService = userService;
             _tokenService = tokenService;
@@ -47,6 +52,12 @@ namespace NewsBoardBE.Controllers
             }
             var newToken = _tokenService.GenerateToken(newUserId);
             return Ok(new { Token = newToken });
+        }
+        [HttpGet("userId")]
+        public string GetUserIdFromToken(string token)
+        {
+            return _tokenService.GetUserIdFromRefreshToken(token);
+           
         }
     }
 }
