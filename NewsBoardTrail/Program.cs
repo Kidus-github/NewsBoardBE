@@ -26,8 +26,7 @@ namespace NewsBoardBE
 
 
 
-            builder.Services.AddScoped<INewsBoardServices<User>, NewsBoardService>();
-            builder.Services.AddScoped<INewsBoardServices<Content>, ContentService>();
+            builder.Services.AddScoped<IUser, NewsBoardService>();
             builder.Services.AddScoped<INewsBoardServices<ContentShare>, ContentShareService>();
             builder.Services.AddScoped<INewsBoardServices<ContentTag>, ContentTagService>();
             builder.Services.AddScoped<INewsBoardServices<Follow>, FollowService>();
@@ -39,6 +38,7 @@ namespace NewsBoardBE
             builder.Services.AddScoped<INewsBoardServices<Subscription>, SubscriptionService>();
             builder.Services.AddScoped<INewsBoardServices<Tags>, TagService>();
             builder.Services.AddScoped<INewsBoardServices<Trendings>, TrendingService>();
+            builder.Services.AddScoped<IContentService, ContentService>();
             builder.Services.AddScoped<ILikeService, LikeService>();
             builder.Services.AddScoped<ICommentService, CommentService>();
 

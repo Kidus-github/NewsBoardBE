@@ -4,7 +4,7 @@ using NewsBoardBE.Modals;
 
 namespace NewsBoardBE.Services
 {
-    public class NewsBoardService : INewsBoardServices<User>
+    public class NewsBoardService : IUser
     {
         private readonly IMongoCollection<User> _user;
 
@@ -25,14 +25,13 @@ namespace NewsBoardBE.Services
             _user.DeleteOne(user => user.UserId == id);
         }
 
-        public List<User> Get()
-        {
-            return _user.Find(user => true).ToList();
-        }
-
         public User GetById(string id)
         {
             return _user.Find(user => user.UserId == id).FirstOrDefault();
+        }
+        public string GetUserName(string id)
+        {
+            return _user.Find(user => user.UserId == id).FirstOrDefault()?.UserName;
         }
 
         public void Update(string id, User user)

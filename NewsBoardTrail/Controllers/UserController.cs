@@ -9,20 +9,14 @@ namespace NewsBoardBE.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly INewsBoardServices<User> newsBoadService;
+        private readonly IUser newsBoadService;
 
-        public UserController(INewsBoardServices<User> NewsBoardservices)
+        public UserController(IUser NewsBoardservices)
         {
             newsBoadService = NewsBoardservices;
         }
         // GET: api/<UserController>
-        [HttpGet]
-        public ActionResult<List<User>> Get()
-        {
-            return newsBoadService.Get();
-        }
 
-        // GET api/<UserController>/5
         [HttpGet("{id}")]
         public ActionResult<User> Get(string id)
         {
@@ -61,6 +55,17 @@ namespace NewsBoardBE.Controllers
             if (existingUser == null) { return NotFound($"User with Id = {id} not found"); }
             newsBoadService.Delete(id);
             return Ok($"User with Id = {id} deleted");
+        }
+        [HttpGet("GetUserNametBYid")]
+        public ActionResult<string> GetUserNameById(string id)
+        {
+            var username = newsBoadService.GetUserName(id);
+            if (username == null)
+            {
+                return NotFound($"Comment with Id = {id} not found");
+            }
+            return username;
+
         }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using MongoDB.Driver;
 using NewsBoardBE.Modals;
+using System.Xml.Linq;
 
 namespace NewsBoardBE.Services
 {
-    public class ContentService: INewsBoardServices<Content>
+    public class ContentService: IContentService
     {
         private readonly IMongoCollection<Content> _content;
 
@@ -34,6 +35,11 @@ namespace NewsBoardBE.Services
         public Content GetById(string id)
         {
             return _content.Find(content => content.ContentId == id).FirstOrDefault();
+        }
+
+        public List<Content> GetListByUsername(string id)
+        {
+            return _content.Find(content => content.Author == id).ToList();
         }
 
         public void Update(string id, Content entity)

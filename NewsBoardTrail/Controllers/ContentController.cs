@@ -9,8 +9,8 @@ namespace NewsBoardBE.Controllers
     [ApiController]
     public class ContentController : ControllerBase
     {
-        private readonly INewsBoardServices<Content> contentServices;
-        public ContentController(INewsBoardServices<Content> ContentService)
+        private readonly IContentService contentServices;
+        public ContentController(IContentService ContentService)
         {
             contentServices = ContentService;
         }
@@ -61,6 +61,17 @@ namespace NewsBoardBE.Controllers
             if (existingUser == null) { return NotFound($"User with Id = {id} not found"); }
             contentServices.Delete(id);
             return Ok($"Content with Id = {id} deleted");
+        }
+        [HttpGet("GetListBYUsername")]
+        public ActionResult<List<Content>> GetListByUsername(string Username)
+        {
+            var content = contentServices.GetListByUsername(Username);
+            if (content == null)
+            {
+                return NotFound($"Content with Author = {Username} not found");
+            }
+            return content;
+
         }
     }
 }
