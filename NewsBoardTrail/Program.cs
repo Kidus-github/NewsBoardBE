@@ -31,6 +31,7 @@ namespace NewsBoardBE
             builder.Services.AddScoped<INewsBoardServices<ContentTag>, ContentTagService>();
             builder.Services.AddScoped<INewsBoardServices<Follow>, FollowService>();
             builder.Services.AddScoped<INewsBoardServices<Notification>, NotificationService>();
+            builder.Services.AddScoped<INewsBoardServices<Category>, CategoryService>();
             builder.Services.AddScoped<INewsBoardServices<PaymentTransaction>, PaymentTransactionService>();
             builder.Services.AddScoped<INewsBoardServices<Report>, ReportService>();
             builder.Services.AddScoped<INewsBoardServices<SearchHistory>, SearchHistoryService>();
