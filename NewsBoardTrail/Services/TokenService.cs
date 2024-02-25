@@ -16,21 +16,6 @@ namespace NewsBoardBE.Services
             _configuration = configuration;
             
         }
-        /* public string GenerateToken(string userId)
-         {
-             var tokenHandler = new JwtSecurityTokenHandler();
-             var key = Encoding.ASCII.GetBytes(_configuration["JwtSettings:SecretKey"]);
-             var tokenDescriptor = new SecurityTokenDescriptor
-             {
-                 Subject = new ClaimsIdentity(new Claim[]
-                 {
-                     new Claim(ClaimTypes.Name, userId) }),
-                 Expires = DateTime.UtcNow.AddHours(1),
-                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-             };
-             var token =tokenHandler.CreateToken(tokenDescriptor);
-             return tokenHandler.WriteToken(token);
-         }*/
         public string GenerateToken(string userId)
         {
             
@@ -42,12 +27,10 @@ namespace NewsBoardBE.Services
         };
 
             
-            var secretKey = _configuration["JwtSettings:SecretKey"];
 
-            var key = Encoding.UTF8.GetBytes(secretKey);
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]));
 
-            
-            var creds = new SigningCredentials((new SymmetricSecurityKey(key)), SecurityAlgorithms.HmacSha256);
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             
             var token = new JwtSecurityToken(

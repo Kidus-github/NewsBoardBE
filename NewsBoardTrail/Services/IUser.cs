@@ -9,5 +9,7 @@ namespace NewsBoardBE.Services
         void Update(string id, User entity);
         void Delete(string id);
         string GetUserName(string id);
+
+        string GetUserImageByUserName(string username);
     }
 }

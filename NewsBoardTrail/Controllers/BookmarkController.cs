@@ -47,9 +47,9 @@ namespace NewsBoardBE.Controllers
         public ActionResult<Bookmark> Put(string id, [FromBody] Bookmark bookmark)
         {
             var existingUser = _bookmarkServices.GetById(id);
-            if (existingUser == null) { return NotFound($"User with Id = {id} not found"); }
+            if (existingUser == null) { return NotFound($"Bookmakr with Id = {id} not found"); }
             _bookmarkServices.Update(id, bookmark);
-            return Ok($"Content with id = {id} Updated");
+            return Ok($"bookmark with id = {id} Updated");
         }
 
 

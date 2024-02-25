@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NewsBoardBE.Modals;
 using NewsBoardBE.Services;
 
@@ -17,7 +18,9 @@ namespace NewsBoardBE.Controllers
         }
         // GET: api/<UserController>
 
+       
         [HttpGet("{id}")]
+
         public ActionResult<User> Get(string id)
         {
             var user = newsBoadService.GetById(id);
@@ -37,6 +40,7 @@ namespace NewsBoardBE.Controllers
         }
 
         // PUT api/<UserController>/5
+        [AllowAnonymous]
         [HttpPut("{id}")]
         public ActionResult Put(string id, [FromBody] User user)
         {
@@ -62,9 +66,20 @@ namespace NewsBoardBE.Controllers
             var username = newsBoadService.GetUserName(id);
             if (username == null)
             {
-                return NotFound($"Comment with Id = {id} not found");
+                return NotFound($"User with Id = {id} not found");
             }
             return username;
+
+        }
+        [HttpGet("GetImageBYUserName")]
+        public ActionResult<string> GetImageByUserName(string username)
+        {
+            var image = newsBoadService.GetUserImageByUserName(username);
+            if (image == null)
+            {
+                return NotFound($"User with username = {username} not found");
+            }
+            return image;
 
         }
     }

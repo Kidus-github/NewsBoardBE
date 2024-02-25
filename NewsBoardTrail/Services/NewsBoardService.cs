@@ -29,6 +29,12 @@ namespace NewsBoardBE.Services
         {
             return _user.Find(user => user.UserId == id).FirstOrDefault();
         }
+
+        public string GetUserImageByUserName(string username)
+        {
+            return _user.Find(user => user.UserName == username).FirstOrDefault()?.ProfilePicture;
+        }
+
         public string GetUserName(string id)
         {
             return _user.Find(user => user.UserId == id).FirstOrDefault()?.UserName;
@@ -38,5 +44,6 @@ namespace NewsBoardBE.Services
         {
             _user.ReplaceOne(user => user.UserId == id, user);
         }
+        
     }
 }
